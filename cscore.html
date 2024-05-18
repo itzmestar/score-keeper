@@ -1,0 +1,135 @@
+<html>
+<head>
+    <title>Score Keeper</title>
+    <style type="text/css">
+            body, table {
+                font-family: "Courier New", sans-serif;
+                text-align: center;
+            }
+            .buttons {
+                font-size: 4em;
+                display: flex;
+                justify-content: center;
+            }
+            .button, .score1, .score2 {
+                line-height: 1;
+                padding: 2rem;
+                margin: 2rem;
+                border: medium solid;
+                min-height: 1em;
+                min-width: 1em;
+            }
+            .button {
+                cursor: pointer;
+                user-select: none;
+                font-size: 4em;
+            }
+            .minus {
+                color: red;
+            }
+            .end {
+                color: red;
+            }
+            .plus {
+                color: green;
+            }
+            .value {
+                min-width: 2em;
+            }
+            .state {
+                font-size: 4em;
+                color: blue;
+            }
+    </style>
+</head>
+<body>
+<div class="buttons">
+    <table>
+        <tr>
+            <td><b>Team 1</b></td>
+            <td></td>
+            <td><b>Team 2</b></td>
+        </tr>
+        <tr>
+            <td class="score1 state">0</td>
+            <td></td>
+            <td class="score2 state">0</td>
+        </tr>
+    </table>
+</div>
+<div class="buttons">
+    <table>
+        <tr>
+            <td class="button plus four">4</td>
+            <td class="button plus two">2</td>
+            <td class="button plus one">1</td>
+			<td class="button plus wide">W</td>
+        </tr>
+    </table>
+</div>
+<div class="buttons">
+    <table>
+        <tr>
+            <td class="button minus">-</td>
+            <td class="button end">END</td>
+        </tr>
+    </table>
+</div>
+<p class="value"></p>
+<script>
+            var minus = document.querySelector('.minus'),
+                four = document.querySelector('.four'),
+                two = document.querySelector('.two'),
+                one = document.querySelector('.one'),
+				wide = document.querySelector('.wide'),
+                end = document.querySelector('.end'),
+                score1 = document.querySelector('.score1'),
+                score2 = document.querySelector('.score2'),
+				list = document.querySelector('.value'),
+				score = [0, 0],
+				index = 0;
+            four.onclick = function (event) {
+				score[index] += 4;
+                score1.textContent = score[0];
+				score2.textContent = score[1];
+				list.textContent = list.textContent + " 4";
+            }
+            two.onclick = function (event) {
+                score[index] += 2;
+                score1.textContent = score[0];
+				score2.textContent = score[1];
+				list.textContent = list.textContent + " 2";
+            }
+            one.onclick = function (event) {
+                score[index] += 1;
+                score1.textContent = score[0];
+				score2.textContent = score[1];
+				list.textContent = list.textContent + " 1";
+            }
+			wide.onclick = function (event) {
+                score[index] += 1;
+                score1.textContent = score[0];
+				score2.textContent = score[1];
+				list.textContent = list.textContent + " w";
+            }
+            end.onclick = function (event) {
+                if (index == 0){
+					index = 1;
+				} else{
+					index = 0;
+					score = [0, 0];
+					score1.textContent = score[0];
+					score2.textContent = score[1];
+				}
+				list.textContent = "";
+            }
+            minus.onclick = function (event) {
+                score[index] -= 1;
+                score1.textContent = score[0];
+				score2.textContent = score[1];
+				list.textContent = list.textContent.slice(0, -2);
+            }
+            ;
+</script>
+</body>
+</html>
